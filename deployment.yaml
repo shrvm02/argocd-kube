@@ -1,0 +1,33 @@
+apiVersion: apps/v1 #최상필드, 버전은 매번 바뀐다 고정아님
+
+ kind: Deployment #최상필드, 쿠퍼의 처음과 끝, 배포를 위한 스크립트를 작성하겠다, 중요한 오브젝트다, 클러스터 안에다가 컨테이너를 배포하겠다
+
+metadata: #최상필드
+
+ name: argocd-kube-deploy # kubectl get deployment 
+
+spec: #최상필드
+
+ replicas: 3 #개수만큼의 컨테이너가 배포 된다
+
+ selector: #3개의 이미지의 정보가 어디에 있냐 
+
+  matchLabels:
+
+  run: argocd-kube #연결고리
+
+ template:
+
+  metadata:
+
+    labels:
+
+     run: argocd-kube #연결고리
+
+  spec:
+
+   containers:
+
+-  image: 이미지가 없다? → github action이 알아서 채운다(add, commit, push를 통해서) git에서 EKS에 배포 된다
+
+name: argocd-kube
